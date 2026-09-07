@@ -17,8 +17,8 @@ export default function ToDoList(props) {
     <>
       <h1 style={h1Style}> To Do List for {WeekDay}</h1> {/* header */}
       <ul>
-        {ToDos.map((elem) => (
-          <li>{elem}</li>
+        {ToDos.map((elem, index) => (
+          <li key={index}>{elem}</li>
         ))}
       </ul>
     </>
