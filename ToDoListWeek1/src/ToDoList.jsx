@@ -13,6 +13,10 @@ export default function ToDoList(props) {
 
   let h1Style = { color: "deeppink", background: "white" };
 
+  function handleAdd(event) {
+    console.log("we should add a new item");
+  }
+
   return (
     <>
       <h1 style={h1Style}> To Do List for {WeekDay}</h1> {/* header */}
@@ -21,6 +25,7 @@ export default function ToDoList(props) {
           <li key={index}>{elem}</li>
         ))}
       </ul>
+      <button onClick={handleAdd}>Add New Task </button>
     </>
   );
 }
