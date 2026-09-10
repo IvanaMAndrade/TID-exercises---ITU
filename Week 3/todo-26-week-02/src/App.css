@@ -1,0 +1,42 @@
+/* this is App.css */
+.main-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* backgorund color*/
+body {
+  background-color: #fcfaf1;
+}
+
+button {
+  position: relative;
+  max-width: 100%;
+  background-color: #d2e1ff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 25px;
+  margin: 16px;
+}
+
+#AddButton {
+  position: relative;
+  max-width: 100%;
+  background-color: #b9585b;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 25px;
+  margin: 16px;
+}
+
+/* ToDoList Card */
+.card {
+  position: relative;
+  background-color: #fcf5d9;
+  max-width: 100%;
+  padding: 8px;
+  margin: 16px;
+  border-radius: 16px;
+  box-shadow: 25px;
+}
