@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "events": "^3.3.0",
+    "parse": "^8.6.0"
+  }
+}
