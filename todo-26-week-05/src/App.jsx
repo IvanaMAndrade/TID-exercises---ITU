@@ -43,13 +43,14 @@ function App() {
     loadLists();
   }, [user]); // load again whenever somebody else logs in
 
+
   async function handleLogout() {
     try {
       await Parse.User.logOut();
       setUser(null);
     } catch (error) {
       alert(error);
-    }
+    }rea
   }
 
   function handleAuthenticated(loggedInUser) {

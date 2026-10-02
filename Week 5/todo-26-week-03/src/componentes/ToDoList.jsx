@@ -1,28 +1,41 @@
 import { useState, useEffect } from "react";
-import NewTodoForm from "./NewTodoForm.jsx";
 import ToDoItem from "./ToDoItem.jsx";
 import {
   fetchTodos,
   createTodo,
   setTodoDone,
   deleteTodo,
+  fetchTodosByList,
 } from "../services/ToDoServices.js";
+import NewListForm from "./NewListForm.jsx";
+import { createList } from "../services/ListService.js";
+import { fetchLists } from "../services/ListService.js";
+import { Link } from "react-router-dom";
 
-export default function ToDoList({ firstName }) {
+export default function ToDoList({ firstName, userID }) {
   let h1Style = { fontFamily: "DM Serif Display" };
 
   const [todos, setTodos] = useState([]);
+  const [lists, setLists] = useState([]);
 
   useEffect(() => {
     async function load() {
-      setTodos(await fetchTodos());
+      const allLists = await fetchLists();
+      setLists(allLists);
+
+      const todos = [];
+      for (const list of allLists) {
+        const fetchedTodos = await fetchTodosByList(list);
+        todos.push(...fetchedTodos);
+      }
+      setTodos(todos);
     }
     load();
   }, []);
 
-  async function handleAdd(newTask) {
-    const created = await createTodo(newTask);
-    setTodos([...todos, created]);
+  async function handleAddList(newList) {
+    const created = await createList(newList);
+    setLists([...lists, created]);
   }
 
   async function handleDelete(idToDelete) {
@@ -39,19 +52,30 @@ export default function ToDoList({ firstName }) {
   return (
     <div className="card">
       <h1 style={h1Style}>To Do List for {firstName}</h1>
-      <NewTodoForm onAdd={handleAdd} />
-
-      {todos.length === 0 ? (
-        <>Nothing to do</>
+      <NewListForm onAdd={handleAddList} />
+      {lists.length === 0 ? (
+        <>No lists found</>
       ) : (
         <ul>
-          {todos.map((elem) => (
-            <ToDoItem
-              key={elem.id}
-              elem={elem}
-              onDelete={handleDelete}
-              onChange={handleToggle}
-            />
+          {lists.map((list) => (
+            <li key={list.id}>
+              <h2>
+                {" "}
+                <Link to={`/lists/${list.id}`}> {list.name}</Link>
+              </h2>
+              <ul>
+                {todos
+                  .filter((todo) => todo.list === list.id)
+                  .map((todo) => (
+                    <ToDoItem
+                      key={todo.id}
+                      elem={todo}
+                      onDelete={handleDelete}
+                      onChange={handleToggle}
+                    />
+                  ))}
+              </ul>
+            </li>
           ))}
         </ul>
       )}

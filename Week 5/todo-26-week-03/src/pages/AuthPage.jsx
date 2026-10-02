@@ -30,7 +30,7 @@ export default function AuthPage({ onAuthenticated }) {
   return (
     <div>
       <h1>Welcome </h1>
-      {error & <p style={{ color: "red" }}>{error} </p>}
+      {error && <p style={{ color: "red" }}>{error} </p>}
       <form>
         <input
           type="text"
