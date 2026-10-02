@@ -5,6 +5,7 @@ import Parse from "parse"; /*import the Parse backend*/
 import { useState } from "react";
 import { Routes, Route, Navigate, useNavigate, Link } from "react-router-dom";
 import ListPage from "./pages/ListPage";
+import Home from "./pages/Home";
 
 /*Initializing parse*/
 (Parse.initialize(
