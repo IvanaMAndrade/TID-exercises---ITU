@@ -3,7 +3,7 @@ import ToDoList from "./componentes/ToDoList";
 import AuthPage from "./pages/AuthPage";
 import Parse from "parse"; /*import the Parse backend*/
 import { useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate, Link } from "react-router-dom";
 import ListPage from "./pages/ListPage";
 
 /*Initializing parse*/
