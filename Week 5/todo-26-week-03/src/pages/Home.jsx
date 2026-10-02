@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+//Created with AI
 export default function Home({ lists, onAddList }) {
   return (
     <div>
